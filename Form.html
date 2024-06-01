@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <form class="form-div" id="form">
+        <h1>Form Validation</h1>
+        <div class="inner-div">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" />
+        </div>
+        <div class="inner-div">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" />
+        </div>
+        <div class="inner-div">
+            <label for="gender">Gender</label>
+            <div class="flex-div">
+                <input type="radio" id="male" name="gender"  value="male">Male
+                <input type="radio" id="female" name="gender" value="female">Female
+            </div>
+            
+        </div>
+        <div class="inner-div">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+        </div>
+        <div class="inner-div">
+            <label for="country">Country</label>
+            <select name="country" id="country">
+                <option value="" selected disabled>Choose a country</option>
+                <option value="nepal">Nepal</option>
+                <option value="india">India</option>
+                <option value="china">China</option>
+            </select>
+        </div>
+        <div class="inner-div">
+            <label for="email">Contact No</label>
+            <input type="text" name="phone_no" id="phone_no" />
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        var form = document.getElementById("form");
+        const formValidation = () => {
+            var username = form.elements["username"].value;
+            var email = form.elements["email"].value;
+            var password = form.elements["password"].value;
+            var country = form.elements["country"].value;
+            var contactno = form.elements["phone_no"].value;
+
+            if (!username) {
+                return alert("username is required");
+            }
+            if (!email) {
+                return alert("email is required");
+            }
+            if (!password) {
+                return alert("password is required");
+            }
+            if (!phone_no) {
+                return alert("Contact  is required");
+            }
+            if (!country) {
+                return alert("Country is required");
+            }
+
+            if (
+                !email.match(
+                    /^[a-zA-Z]+[a-zA-Z0-9]*(?:\W[a-zA-Z0-9])*[\w\W]*\@[a-zA-Z]{2,8}\.[a-zA-Z]{2,3}$/
+                )
+            ) {
+                return alert("Not a valid Email");
+            }
+
+            if (!password.match(/([a-zA-Z0-9](?=\W)*){5,}/)) {
+                return alert(`password must be at least 5 characters`)
+            }
+
+            return alert(`        Email: ${email}
+         username: ${username} 
+         contact: ${contactno} 
+         country: ${country}`);
+        };
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            formValidation();
+        });
+    </script>
+</body>
+
+</html>
